@@ -1,46 +1,27 @@
-# Getting Started with Create React App
+# SimpleCalc: A String Calculator with Custom Delimiters
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Link : https://vercel.com/pizucoders-projects/string-calculator-tdd
 
-## Available Scripts
+**SimpleCalc** is a React-based calculator that implements a simple yet powerful **String Calculator** algorithm. It allows users to input a string of numbers separated by commas, new lines, or custom delimiters, and returns the sum of those numbers. This project follows the **TDD (Test-Driven Development)** approach and includes robust unit testing using **Jest**.
 
-In the project directory, you can run:
+## Features
+- **Basic Number Calculation**: Input numbers separated by commas or new lines to calculate their sum.
+- **Custom Delimiters**: Use a custom delimiter by inputting numbers in the format `//[delimiter]\n[numbers]`.
+- **Error Handling**: Provides user-friendly error messages for invalid input or negative numbers (e.g., "Negative numbers not allowed").
+- **Interactive User Interface**: Built using **Ant Design** components for a sleek and modern UI.
+- **User Guidance**: A guided **Tour** feature powered by Ant Design helps users understand how to use the calculator, especially when dealing with custom delimiters.
 
-### `npm start`
+## How It Works
+### Input Format:
+1. Enter numbers separated by commas or new lines (e.g., `1,2,3` or `1\n2,3`).
+2. To use a custom delimiter, start the input with `//[delimiter]\n[numbers]`. For example: `//*\n1*2*3` would result in `6`.
+3. Negative numbers are not allowed and will throw an error (e.g., "Negative numbers not allowed: -2").
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Calculation Rules:
+- Numbers are parsed and summed.
+- Default delimiters are comma (`,`) and new line (`\n`).
+- Custom delimiters are specified by starting the string with `//` followed by the delimiter and a newline.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Example:
+- Input: `//;\n1;2;3`
+- Output: `6`
