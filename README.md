@@ -1,6 +1,6 @@
 # SimpleCalc: A String Calculator with Custom Delimiters
 
-Live Link : https://vercel.com/pizucoders-projects/string-calculator-tdd
+Live Link : [click here](https://string-calculator-tdd-fawn.vercel.app/)
 
 **SimpleCalc** is a React-based calculator that implements a simple yet powerful **String Calculator** algorithm. It allows users to input a string of numbers separated by commas, new lines, or custom delimiters, and returns the sum of those numbers. This project follows the **TDD (Test-Driven Development)** approach and includes robust unit testing using **Jest**.
 
