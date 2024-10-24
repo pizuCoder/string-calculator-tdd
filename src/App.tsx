@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Input, Tour, Card, Modal} from 'antd';
 import 'antd/dist/reset.css';  // Ant Design styling reset
-import exampleImg from '/Users/priyamoghe/Documents/string-calculator/src/delimitereg.png';
+import exampleImg from './Assets/delimitereg.png';
 const { TextArea } = Input;
 
 // Core string calculator logic
