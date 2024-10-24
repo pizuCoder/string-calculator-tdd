@@ -90,12 +90,12 @@ const App: React.FC = () => {
     {
       title: 'Add Custom Delimiter',
       description: (
-        <div>
-          <p>To add a custom delimiter, start with "//[delimiter]\\n[numbers]". Like in the below example, "*" is the delimiter</p>
+        <div style={{ maxWidth: '300px', margin: '0 auto' }}>
+          <p>To add a custom delimiter, start with "//[delimiter]\\n[numbers]"</p>
           <img 
             src={exampleImg}
             alt="Custom Delimiter Example"
-            style={{ width: '100%', maxWidth: '300px', marginTop: '10px' }} // Adjust styles as needed
+            style={{ width: '100%', maxWidth: '300px', marginTop: '.5rem' }} // Adjust styles as needed
           />
         </div>
       ),
