@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Input, message, Tour, Card } from 'antd';
+import { Button, Input, message, Tour, Card, Modal} from 'antd';
 import 'antd/dist/reset.css';  // Ant Design styling reset
+import exampleImg from '/Users/priyamoghe/Documents/string-calculator/src/delimitereg.png';
 const { TextArea } = Input;
 
 // Core string calculator logic
@@ -25,7 +26,10 @@ const add = (numbers: string): number => {
     if (!customDelimiter) {
       throw new Error("Custom delimiter is missing.");
     }
-
+    // Check if the custom delimiter is a single character
+    if (customDelimiter.length !== 1) {
+      throw new Error("Custom delimiter must be a single character.");
+    }
     // Create regex for any character in the custom delimiter
     delimiter = new RegExp(`[${customDelimiter.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}]`, 'g');
     
@@ -63,8 +67,17 @@ const App: React.FC = () => {
     } catch (e) {
       if (e instanceof Error) {
         setError(e.message);
+        showErrorModal(e.message);
       }
     }
+  };
+
+  const showErrorModal = (errorMessage: string) => {
+    Modal.error({
+      title: 'Error',
+      content: <div style={{ color: 'red' }}>{errorMessage}</div>,
+      okText: 'OK',
+    });
   };
 
   // Ant Design Tour steps
@@ -76,7 +89,16 @@ const App: React.FC = () => {
     },
     {
       title: 'Add Custom Delimiter',
-      description: 'To add a custom delimiter, start with "//[delimiter]\\n[numbers]"',
+      description: (
+        <div>
+          <p>To add a custom delimiter, start with "//[delimiter]\\n[numbers]". Like in the below example, "*" is the delimiter</p>
+          <img 
+            src={exampleImg}
+            alt="Custom Delimiter Example"
+            style={{ width: '100%', maxWidth: '300px', marginTop: '10px' }} // Adjust styles as needed
+          />
+        </div>
+      ),
       target: () => document.querySelector('.number-input') as HTMLElement,
     },
     {
@@ -122,11 +144,12 @@ const App: React.FC = () => {
       </Button>
 
       <Input
-        value={error ? error : result}
+        value={error? 0: result}
         className="result-box"
         disabled
-        style={{ marginBottom: '20px' }}
+        style={{ marginBottom: '20px', color: '#52c41a', fontSize:'2rem' }}
       />
+      {/* { error? <p style={{color:"#da2525"}}>{error}</p> : <></>} */}
 
       <Button type="dashed" onClick={() => setTourVisible(true)} style={{ width: '100%' }}>
         Show Tour
