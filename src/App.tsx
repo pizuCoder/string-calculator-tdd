@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Button, Input, message, Tour, Card } from 'antd';
+import 'antd/dist/reset.css';  // Ant Design styling reset
+const { TextArea } = Input;
 
 // Core string calculator logic
 const add = (numbers: string): number => {
@@ -50,6 +53,7 @@ const App: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [result, setResult] = useState<number | string>(0);
   const [error, setError] = useState<string | null>(null);
+  const [tourVisible, setTourVisible] = useState(true);
 
   const handleCalculate = () => {
     try {
@@ -63,25 +67,79 @@ const App: React.FC = () => {
     }
   };
 
+  // Ant Design Tour steps
+  const steps = [
+    {
+      title: 'Input Numbers',
+      description: 'Enter numbers separated by commas or new lines.',
+      target: () => document.querySelector('.number-input') as HTMLElement,
+    },
+    {
+      title: 'Add Custom Delimiter',
+      description: 'To add a custom delimiter, start with "//[delimiter]\\n[numbers]"',
+      target: () => document.querySelector('.number-input') as HTMLElement,
+    },
+    {
+      title: 'Calculate Result',
+      description: 'Click the "Calculate" button to get the sum.',
+      target: () => document.querySelector('.calculate-button') as HTMLElement,
+    },
+    {
+      title: 'See the Result',
+      description: 'The result will be displayed here.',
+      target: () => document.querySelector('.result-box') as HTMLElement,
+    },
+  ];
+
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
-      <h1>String Calculator</h1>
-      <textarea
+   
+    <div style={{ display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh', // Full viewport height
+      fontFamily: 'Arial',
+      flexDirection: 'column',
+      padding: '0 20px' }}>
+      <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>SimpleCalc</h1>
+      <Card style={{ width: '100%', maxWidth: '400px', padding: '20px' }}>
+
+      <TextArea
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Enter numbers (one per line)"
-        style={{ padding: '10px', width: '300px', height: '100px', marginRight: '10px' }}
+        placeholder="Enter numbers (comma-separated or new line)"
+        className="number-input"
+        autoSize={{ minRows: 3, maxRows: 5 }}
+        style={{ marginBottom: '20px' }}
       />
-      <button onClick={handleCalculate} style={{ padding: '10px' }}>
+
+      <Button
+        type="primary"
+        onClick={handleCalculate}
+        className="calculate-button"
+        style={{ marginBottom: '20px', width: '100%' }}
+      >
         Calculate
-      </button>
-      
-      {error ? (
-        <p style={{ color: 'red' }}>{error}</p>
-      ) : (
-        <p style={{ fontSize: '20px', marginTop: '10px' }}>Result: {result}</p>
-      )}
+      </Button>
+
+      <Input
+        value={error ? error : result}
+        className="result-box"
+        disabled
+        style={{ marginBottom: '20px' }}
+      />
+
+      <Button type="dashed" onClick={() => setTourVisible(true)} style={{ width: '100%' }}>
+        Show Tour
+      </Button>
+
+      <Tour
+        open={tourVisible}
+        onClose={() => setTourVisible(false)}
+        steps={steps}
+      />
+      </Card>
     </div>
+   
   );
 };
 
