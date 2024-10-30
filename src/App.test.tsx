@@ -72,6 +72,19 @@ describe("String Calculator App", () => {
     expect(errorMessage).toBeInTheDocument();
   });
 
+  test("uses * symbol in delimiter for multiplication", async () => {
+    render(<App />);
+
+    const textArea = screen.getByPlaceholderText(/Enter numbers/i);
+    fireEvent.change(textArea, { target: { value: "//*\n2*4" } }); // Custom delimiter is ';'
+
+    const calculateButton = screen.getByRole("button", { name: /Calculate/i });
+    fireEvent.click(calculateButton);
+
+    const result = screen.getByDisplayValue(/8/i); // Should sum up using ';' only
+    expect(result).toBeInTheDocument();
+  });
+
   test("uses only the custom delimiter when set", () => {
     render(<App />);
 
