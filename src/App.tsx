@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { add } from "./addFunc";
+import { calculate } from "./calcFuncs";
 import { Button, Input, Tour, Card, Modal } from "antd";
 import "antd/dist/reset.css"; // Ant Design styling reset
 import exampleImg from "./Assets/delimitereg.png";
@@ -17,7 +17,7 @@ const App: React.FC = () => {
   const handleCalculate = () => {
     try {
       setError(null); // Reset error state before calculation
-      const sum = add(inputValue);
+      const sum = calculate(inputValue);
       setResult(sum);
     } catch (e) {
       if (e instanceof Error) {
