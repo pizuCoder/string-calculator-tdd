@@ -5,9 +5,7 @@ import "antd/dist/reset.css"; // Ant Design styling reset
 import exampleImg from "./Assets/delimitereg.png";
 const { TextArea } = Input;
 
-
 // Core string calculator logic
-
 const App: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
   const [result, setResult] = useState<number | string>(0);
